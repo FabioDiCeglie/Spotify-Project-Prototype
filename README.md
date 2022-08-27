@@ -1,3 +1,3 @@
-## Project Spotify Prototype
+# Project Spotify Prototype
 
-# Next.js + Tailwind CSS + NextAuth + NextMiddleware + SpotifyAPI
+## Next.js + Tailwind CSS + NextAuth + NextMiddleware + SpotifyAPI
