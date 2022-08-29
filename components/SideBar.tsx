@@ -14,12 +14,14 @@ import useSpotify from "../hooks/useSpotify";
 
 interface Playlist {
   name: string;
+  id: string;
 }
 
 const SideBar: NextPage = () => {
   const spotifyApi = useSpotify();
   const { data: session, status } = useSession();
   const [playlists, setPlaylists] = useState(null);
+  const [playlistId, setPlaylistId] = useState(null);
 
   useEffect(() => {
     if (spotifyApi.getAccessToken()) {
@@ -75,7 +77,12 @@ const SideBar: NextPage = () => {
         {playlists
           ? // @ts-ignore
             playlists.map((playlist: Playlist) => {
-              <p className="cursor-pointer hover:text-white">
+              <p
+                className="cursor-pointer hover:text-white"
+                key={playlist.id}
+                // @ts-ignore
+                onClick={() => setPlaylistId(playlist.id)}
+              >
                 {" "}
                 - {playlist.name}
               </p>;
