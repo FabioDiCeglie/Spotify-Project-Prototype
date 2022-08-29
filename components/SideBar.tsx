@@ -8,9 +8,18 @@ import {
   RssIcon,
 } from "@heroicons/react/outline";
 import { signOut, useSession } from "next-auth/react";
+import { useEffect, useState } from "react";
+import useSpotify from "../hooks/useSpotify";
 
 const SideBar: NextPage = () => {
+  const spotifyApi = useSpotify();
   const { data: session, status } = useSession();
+  const [playlists, setPlaylists] = useState();
+
+  useEffect(() => {
+    if (spotifyApi.getAccessToken()) {
+    }
+  }, [session, spotifyApi]);
 
   return (
     <div className="text-gray-500 p-5 text-sm border-r border-gray-900 overflow-y-scroll h-screen">
