@@ -11,6 +11,8 @@ import {
 import { signOut, useSession } from "next-auth/react";
 import { useEffect, useState } from "react";
 import useSpotify from "../hooks/useSpotify";
+import { useRecoilState } from "recoil";
+import { playlistIdState } from "../atoms/playlistAtom";
 
 interface Playlist {
   name: string;
@@ -21,7 +23,7 @@ const SideBar: NextPage = () => {
   const spotifyApi = useSpotify();
   const { data: session, status } = useSession();
   const [playlists, setPlaylists] = useState(null);
-  const [playlistId, setPlaylistId] = useState(null);
+  const [playlistId, setPlaylistId] = useRecoilState(playlistIdState);
 
   useEffect(() => {
     if (spotifyApi.getAccessToken()) {
@@ -80,7 +82,6 @@ const SideBar: NextPage = () => {
               <p
                 className="cursor-pointer hover:text-white"
                 key={playlist.id}
-                // @ts-ignore
                 onClick={() => setPlaylistId(playlist.id)}
               >
                 {" "}

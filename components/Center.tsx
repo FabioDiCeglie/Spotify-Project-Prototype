@@ -3,6 +3,8 @@ import type { NextPage } from "next";
 import { useSession } from "next-auth/react";
 import { useEffect, useState } from "react";
 import { shuffle } from "lodash";
+import { useRecoilValue } from "recoil";
+import { playlistIdState } from "../atoms/playlistAtom";
 
 const colors = [
   "from-red-500",
@@ -14,10 +16,12 @@ const colors = [
 const Center: NextPage = () => {
   const { data: session } = useSession();
   const [color, setColor] = useState(null);
+  const playlistId = useRecoilValue(playlistIdState);
 
   useEffect(() => {
     setColor(shuffle(colors).pop());
-  }, []);
+  }, [playlistId]);
+
   return (
     <div className="flex-grow text-white">
       <header className="absolute top-5 right-8">
