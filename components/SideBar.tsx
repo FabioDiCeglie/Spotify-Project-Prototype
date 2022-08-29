@@ -28,7 +28,7 @@ const SideBar: NextPage = () => {
   useEffect(() => {
     if (spotifyApi.getAccessToken()) {
       spotifyApi.getUserPlaylists().then((data: any) => {
-        setPlaylists(data.body.item);
+        setPlaylists(data.body.items);
       });
     }
   }, [session, spotifyApi]);
@@ -79,14 +79,16 @@ const SideBar: NextPage = () => {
         {playlists
           ? // @ts-ignore
             playlists.map((playlist: Playlist) => {
-              <p
-                className="cursor-pointer hover:text-white"
-                key={playlist.id}
-                onClick={() => setPlaylistId(playlist.id)}
-              >
-                {" "}
-                - {playlist.name}
-              </p>;
+              return (
+                <p
+                  className="cursor-pointer hover:text-white"
+                  key={playlist.id}
+                  onClick={() => setPlaylistId(playlist.id)}
+                >
+                  {" "}
+                  - {playlist.name}
+                </p>
+              );
             })
           : ""}
       </div>
