@@ -6,18 +6,26 @@ import {
   PlusCircleIcon,
   HeartIcon,
   RssIcon,
+  MusicNoteIcon,
 } from "@heroicons/react/outline";
 import { signOut, useSession } from "next-auth/react";
 import { useEffect, useState } from "react";
 import useSpotify from "../hooks/useSpotify";
 
+interface Playlist {
+  name: string;
+}
+
 const SideBar: NextPage = () => {
   const spotifyApi = useSpotify();
   const { data: session, status } = useSession();
-  const [playlists, setPlaylists] = useState();
+  const [playlists, setPlaylists] = useState(null);
 
   useEffect(() => {
     if (spotifyApi.getAccessToken()) {
+      spotifyApi.getUserPlaylists().then((data: any) => {
+        setPlaylists(data.body.item);
+      });
     }
   }, [session, spotifyApi]);
 
@@ -60,12 +68,19 @@ const SideBar: NextPage = () => {
 
         <hr className="border-t-[0.1px] border-gray-900" />
 
-        {/* Playlist.... */}
-        <p className="cursor-pointer hover:text-white">Playlist name...</p>
-        <p className="cursor-pointer hover:text-white">Playlist name...</p>
-        <p className="cursor-pointer hover:text-white">Playlist name...</p>
-        <p className="cursor-pointer hover:text-white">Playlist name...</p>
-        <p className="cursor-pointer hover:text-white">Playlist name...</p>
+        <button className="flex items-center space-x-2 hover:text-white">
+          <MusicNoteIcon className="h-5 w-5" />
+          <p>Playlists</p>
+        </button>
+        {playlists
+          ? // @ts-ignore
+            playlists.map((playlist: Playlist) => {
+              <p className="cursor-pointer hover:text-white">
+                {" "}
+                - {playlist.name}
+              </p>;
+            })
+          : ""}
       </div>
     </div>
   );
