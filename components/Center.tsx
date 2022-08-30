@@ -41,7 +41,6 @@ const Center: NextPage = () => {
         className={`flex items-end space-x-7 bg-gradient-to-b to-black ${color} h-80 text-white padding-8`}
       >
         <img src="" alt="" />
-        <h1>ciao</h1>
       </section>
     </div>
   );

@@ -8,7 +8,7 @@ export async function middleware(req: NextRequest) {
     const token = await getToken({ req, secret: process.env.JWT_SECRET });
 
     const { pathname } = req.nextUrl;
-    console.log(token);
+
     // Allow the requests if the following is true...
     if (pathname.includes("/api/auth") || token) {
       return NextResponse.next();
