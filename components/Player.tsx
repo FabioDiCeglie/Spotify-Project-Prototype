@@ -14,14 +14,14 @@ const Player: NextComponentType = () => {
   const [isPlaying, setIsPlaying] = useRecoilState(isPlayingState);
   const [volume, setVolume] = useState(50);
 
-  const songInfo = useSongInfo();
+  const songInfo: any = useSongInfo();
 
   const fetchCurrentSong = () => {
     if (!songInfo) {
       spotifyApi.getMyCurrentPlayingTrack().then((data: any) => {
-        setCurrentTrackId(data.body?.item.id);
+        setCurrentTrackId(data.body?.item?.id);
 
-        spotifyApi.getMyCurrentPlayblackState().then((data: any) => {
+        spotifyApi.getMyCurrentPlaybackState().then((data: any) => {
           setIsPlaying(data.body.is_playing);
         });
       });
@@ -36,14 +36,17 @@ const Player: NextComponentType = () => {
   }, [currentTrackId, spotifyApi, session]);
 
   return (
-    <div className="">
+    <div className="h-24 bg-gradient-to-b from-black to-gray-900 text-white">
       <div>
         <img
           className="hidden md:inline h-10 w-10"
-          // @ts-ignore
           src={songInfo?.album.images?.[0]?.url}
           alt=""
         />
+        <div>
+          <h3>{songInfo?.name}</h3>
+          <p>{songInfo?.artists?.[0]?.name}</p>
+        </div>
       </div>
 
       <div></div>
