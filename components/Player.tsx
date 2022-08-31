@@ -42,7 +42,15 @@ const Player: NextComponentType = () => {
   };
 
   const handlePlayPause = () => {
-    return;
+    spotifyApi.getMyCurrentPlaybackState().then((data: any) => {
+      if (data.body.is_playing) {
+        spotifyApi.pause();
+        setIsPlaying(false);
+      } else {
+        spotifyApi.play();
+        setIsPlaying(true);
+      }
+    });
   };
 
   useEffect(() => {
