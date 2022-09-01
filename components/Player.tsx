@@ -13,11 +13,12 @@ import {
 } from "@heroicons/react/solid";
 import type { NextComponentType } from "next";
 import { useSession } from "next-auth/react";
-import { useEffect, useState } from "react";
+import { useCallback, useEffect, useState } from "react";
 import { useRecoilState } from "recoil";
 import { currentTrackIdState, isPlayingState } from "../atoms/songAtom";
 import useSongInfo from "../hooks/useSongInfo";
 import useSpotify from "../hooks/useSpotify";
+import { debounce } from "lodash";
 
 const Player: NextComponentType = () => {
   const spotifyApi = useSpotify();
@@ -65,6 +66,14 @@ const Player: NextComponentType = () => {
       debouncedAdjustVolume(volume);
     }
   }, [volume]);
+
+  const debouncedAdjustVolume = useCallback(
+    debounce((volume: number) => {
+      spotifyApi.setVolume(volume).catch((err: string) => {});
+    }, 500),
+    []
+  );
+
   return (
     <div className="h-24 bg-gradient-to-b from-black to-gray-900 text-white grid grid-cols-3 text-xs md:text-base px-2 md:px-8">
       <div className="flex items-center space-x-4">
