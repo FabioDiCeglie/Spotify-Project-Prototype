@@ -18,6 +18,7 @@ import { useRecoilState } from "recoil";
 import { currentTrackIdState, isPlayingState } from "../atoms/songAtom";
 import useSongInfo from "../hooks/useSongInfo";
 import useSpotify from "../hooks/useSpotify";
+// @ts-ignore
 import { debounce } from "lodash";
 
 const Player: NextComponentType = () => {
