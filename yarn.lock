@@ -293,11 +293,6 @@ crypto-js@3.1.9-1:
   resolved "https://registry.yarnpkg.com/crypto-js/-/crypto-js-3.1.9-1.tgz#fda19e761fc077e01ffbfdc6e9fdfc59e8806cd8"
   integrity sha512-W93aKztssqf29OvUlqfikzGyYbD1rpkXvGP9IQ1JchLY3bxaLXZSWYbwrtib2vk8DobrDzX7PIXcDWHp0B6Ymw==
 
-crypto.js@^3.0.0:
-  version "3.0.0"
-  resolved "https://registry.yarnpkg.com/crypto.js/-/crypto.js-3.0.0.tgz#aa3c48ad5307a48211833795c908dff450a29361"
-  integrity sha512-eNvFmXsj0kv8OGfSOnfBMbKbcMXb+/LrBNZgW4Nc/jlcl3q9gAQHGB/GMdhkJR3zjrqIAL0TbbUg+PS40HwYcQ==
-
 cssesc@^3.0.0:
   version "3.0.0"
   resolved "https://registry.yarnpkg.com/cssesc/-/cssesc-3.0.0.tgz#37741919903b868565e1c09ea747445cd18983ee"
