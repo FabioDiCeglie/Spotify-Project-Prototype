@@ -7,9 +7,6 @@
   },
   "dependencies": {
     "@heroicons/react": "v1",
-    "crypto": "yarn:crypto-browserify",
-    "crypto-browserify": "^3.12.0",
-    "crypto-js": "^4.1.1",
     "lodash": "^4.17.21",
     "next": "latest",
     "next-auth": "^4.10.3",
