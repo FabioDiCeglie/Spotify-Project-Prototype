@@ -14,9 +14,9 @@
 //       return NextResponse.next();
 //     }
 
-    // // Redirect them to login if they don't have a token
-    // if (!token && pathname !== "/login") {
-    //   return NextResponse.redirect(new URL("/login", req.url));
-    // }
-  }
-}
+// // Redirect them to login if they don't have a token
+// if (!token && pathname !== "/login") {
+//   return NextResponse.redirect(new URL("/login", req.url));
+// }
+//   }
+// }
